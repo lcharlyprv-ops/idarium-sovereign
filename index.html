@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IDARIUM SOVEREIGN — Digital Sovereignty Infrastructure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Tenor+Sans&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1a2a3a;
+      --navy-deep: #0d1a26;
+      --navy-mid: #243447;
+      --gold: #b8975a;
+      --gold-light: #d4b07a;
+      --cream: #f2efe8;
+      --cream-dark: #e8e4db;
+      --white: #ffffff;
+      --text-muted: #8a9aaa;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Tenor Sans', sans-serif; background-color: var(--cream); color: var(--navy); overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; background: rgba(242,239,232,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(26,42,58,0.1); }
+    .nav-logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+    .nav-logo svg { width: 44px; height: 44px; }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1; }
+    .nav-brand-main { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; color: var(--navy); text-transform: uppercase; }
+    .nav-brand-sub { font-size: 0.6rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 2px; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); opacity: 0.7; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2rem 4rem; background: var(--navy-deep); }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(36,52,71,0.9) 0%, var(--navy-deep) 70%); }
+    .hero-lines { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.8) 59px, rgba(255,255,255,0.8) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.8) 59px, rgba(255,255,255,0.8) 60px); }
+    .hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(184,151,90,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: pulse 6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6} 50%{transform:translate(-50%,-50%) scale(1.15);opacity:1} }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+    .hero-seal { margin: 0 auto 3rem; width: 130px; height: 130px; animation: fadeDown 1s ease both; }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 1s 0.2s ease both; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,6vw,5.5rem); font-weight: 300; line-height: 1.05; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; animation: fadeUp 1s 0.35s ease both; margin-bottom: 0.3rem; }
+    .hero-title span { color: var(--gold-light); font-style: italic; font-weight: 300; }
+    .hero-subtitle { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3rem; animation: fadeUp 1s 0.5s ease both; }
+    .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 3rem; animation: expand 1s 0.6s ease both; }
+    @keyframes expand { from{width:0;opacity:0} to{width:60px;opacity:1} }
+    .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem,2vw,1.5rem); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 650px; margin: 0 auto 4rem; animation: fadeUp 1s 0.7s ease both; }
+    .hero-cta { display: inline-flex; gap: 1.5rem; animation: fadeUp 1s 0.9s ease both; }
+    .btn-primary { padding: 0.9rem 2.5rem; background: var(--gold); color: var(--navy-deep); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; transition: all 0.3s ease; border: 1px solid var(--gold); }
+    .btn-primary:hover { background: transparent; color: var(--gold); }
+    .btn-secondary { padding: 0.9rem 2.5rem; background: transparent; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.3); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; animation: fadeUp 1s 1.2s ease both; }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(184,151,90,0.6), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    section { padding: 7rem 4rem; }
+    .section-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 400; line-height: 1.15; color: var(--navy); margin-bottom: 2rem; }
+    .section-title em { font-style: italic; color: var(--navy-mid); }
+    .about { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1300px; margin: 0 auto; }
+    .about-visual { position: relative; }
+    .about-frame { width: 100%; aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; }
+    .about-frame-inner { position: absolute; inset: 2rem; border: 1px solid rgba(184,151,90,0.3); display: flex; align-items: center; justify-content: center; }
+    .about-frame-text { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; color: rgba(255,255,255,0.06); letter-spacing: 0.1em; text-align: center; line-height: 1.1; text-transform: uppercase; user-select: none; }
+    .about-frame-seal { position: absolute; bottom: 3rem; right: 3rem; width: 80px; height: 80px; opacity: 0.4; }
+    .about-tag { position: absolute; top: -1.5rem; left: 2rem; background: var(--gold); color: var(--navy-deep); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5rem 1rem; }
+    .about-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; line-height: 1.9; color: var(--navy-mid); margin-bottom: 1.5rem; }
+    .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(26,42,58,0.1); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .mission-section { background: var(--navy-deep); position: relative; overflow: hidden; }
+    .mission-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; font-weight: 600; color: rgba(255,255,255,0.015); white-space: nowrap; user-select: none; letter-spacing: 0.05em; }
+    .mission-inner { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; }
+    .mission-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 5rem; gap: 3rem; }
+    .mission-header .section-title { color: var(--white); max-width: 500px; }
+    .mission-header .section-title em { color: var(--gold-light); }
+    .mission-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.5); line-height: 1.8; max-width: 380px; text-align: right; }
+    .mission-pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .pillar { background: rgba(255,255,255,0.03); padding: 3rem 2.5rem; border-top: 2px solid transparent; transition: all 0.4s ease; cursor: default; }
+    .pillar:hover { background: rgba(255,255,255,0.06); border-top-color: var(--gold); }
+    .pillar-number { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: rgba(184,151,90,0.2); line-height: 1; margin-bottom: 1.5rem; }
+    .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--white); margin-bottom: 1rem; }
+    .pillar-text { font-size: 0.8rem; line-height: 1.8; color: rgba(255,255,255,0.45); }
+    .entities-section { background: var(--cream-dark); }
+    .entities-inner { max-width: 1300px; margin: 0 auto; }
+    .entities-header { text-align: center; margin-bottom: 5rem; }
+    .entities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .entity-card { padding: 4rem 3.5rem; position: relative; overflow: hidden; transition: all 0.4s ease; }
+    .entity-card.sovereign { background: var(--navy); }
+    .entity-card.tech { background: var(--navy-mid); }
+    .entity-card:hover { transform: translateY(-4px); }
+    .entity-bg-letter { position: absolute; bottom: -2rem; right: -1rem; font-family: 'Cormorant Garamond', serif; font-size: 12rem; font-weight: 600; color: rgba(255,255,255,0.03); line-height: 1; user-select: none; }
+    .entity-tag { display: inline-block; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,90,0.3); padding: 0.35rem 0.8rem; margin-bottom: 2rem; }
+    .entity-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--white); margin-bottom: 0.5rem; }
+    .entity-domain { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 2rem; opacity: 0.7; }
+    .entity-desc { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 2.5rem; }
+    .entity-features { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .entity-features li { font-size: 0.75rem; color: rgba(255,255,255,0.5); padding-left: 1.2rem; position: relative; }
+    .entity-features li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.6rem; }
+    .contact-section { background: var(--cream); }
+    .contact-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-left p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--navy-mid); line-height: 1.8; margin-bottom: 3rem; opacity: 0.8; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .contact-item-label { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+    .contact-item-value { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--navy); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .form-group input, .form-group textarea, .form-group select { background: transparent; border: none; border-bottom: 1px solid rgba(26,42,58,0.2); padding: 0.8rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--navy); outline: none; transition: border-color 0.3s; width: 100%; appearance: none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-bottom-color: var(--gold); }
+    .form-group textarea { resize: none; height: 80px; }
+    .form-submit { padding: 1rem 2rem; background: var(--navy); color: var(--cream); border: none; font-family: 'Tenor Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; align-self: flex-start; }
+    .form-submit:hover { background: var(--gold); color: var(--navy-deep); }
+    footer { background: var(--navy-deep); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(184,151,90,0.15); }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .footer-copy { font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { text-decoration: none; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      section { padding: 5rem 2rem; }
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { display: none; }
+      .mission-header { flex-direction: column; align-items: flex-start; }
+      .mission-intro { text-align: left; }
+      .mission-pillars { grid-template-columns: 1fr; }
+      .entities-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20.5" stroke="#1a2a3a" stroke-width="1.5"/>
+        <path d="M13 16h2.5v-3.5c0-0.5 0.3-0.8 0.8-0.8h11.4c0.5 0 0.8 0.3 0.8 0.8V16H31l-2 2H15l-2-2z" fill="#1a2a3a"/>
+        <path d="M15 18h14l1 14c0 0.5-0.3 1-0.8 1.3L22 36l-7.2-2.7c-0.5-0.2-0.8-0.7-0.8-1.3L15 18z" fill="#1a2a3a"/>
+        <text x="22" y="31" font-family="Georgia, serif" font-size="10" font-weight="600" fill="white" text-anchor="middle" letter-spacing="0.5">IS</text>
+        <circle cx="22" cy="13" r="1.5" fill="#b8975a"/>
+        <circle cx="17" cy="14.5" r="1.2" fill="#b8975a"/>
+        <circle cx="27" cy="14.5" r="1.2" fill="#b8975a"/>
+      </svg>
+      <div class="nav-brand">
+        <span class="nav-brand-main">Idarium</span>
+        <span class="nav-brand-sub">Sovereign</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#entities">Structure</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-seal">
+        <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="circle-text" d="M 65,65 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"/>
+          </defs>
+          <circle cx="65" cy="65" r="62" stroke="rgba(184,151,90,0.3)" stroke-width="1" fill="none"/>
+          <circle cx="65" cy="65" r="55" stroke="rgba(184,151,90,0.15)" stroke-width="1" fill="none"/>
+          <text font-family="Tenor Sans, sans-serif" font-size="7.5" fill="rgba(184,151,90,0.7)" letter-spacing="3.2">
+            <textPath href="#circle-text">IDARIUM SOVEREIGN · DIGITAL SOVEREIGNTY INFRASTRUCTURE ·</textPath>
+          </text>
+          <path d="M45 52h40l3 22c0 2-1 4-3 5L65 85l-20-6c-2-1-3-3-3-5l3-22z" fill="rgba(184,151,90,0.15)" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
+          <text x="65" y="75" font-family="Georgia, serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="2">IS</text>
+          <circle cx="56" cy="50" r="2" fill="rgba(184,151,90,0.6)"/>
+          <circle cx="65" cy="48" r="2.5" fill="rgba(184,151,90,0.8)"/>
+          <circle cx="74" cy="50" r="2" fill="rgba(184,151,90,0.6)"/>
+          <line x1="56" y1="50" x2="65" y2="48" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
+          <line x1="74" y1="50" x2="65" y2="48" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
+        </svg>
+      </div>
+      <p class="hero-eyebrow">Established · Brussels · Estonia</p>
+      <h1 class="hero-title">Idarium<br/><span>Sovereign</span></h1>
+      <p class="hero-subtitle">Digital Sovereignty Infrastructure</p>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">The first international agency enabling sovereign states to deploy, control and monetise their own national e-residency programme.</p>
+      <div class="hero-cta">
+        <a href="#mission" class="btn-primary">Our Mission</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+  </section>
+
+  <section id="about" style="padding:7rem 4rem;">
+    <div class="about">
+      <div class="about-visual">
+        <div class="about-tag">Est. 2025</div>
+        <div class="about-frame">
+          <div class="about-frame-inner">
+            <div class="about-frame-text">Digital<br/>Sovereignty</div>
+          </div>
+          <div class="about-frame-seal">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" stroke="rgba(184,151,90,0.4)" stroke-width="1" fill="none"/>
+              <path d="M25 35h30l2 16c0 1.5-0.8 3-2 3.5L40 58l-15-3.5c-1.2-0.5-2-2-2-3.5l2-16z" fill="rgba(184,151,90,0.1)" stroke="rgba(184,151,90,0.5)" stroke-width="1"/>
+              <text x="40" y="52" font-family="Georgia" font-size="11" fill="rgba(184,151,90,0.7)" text-anchor="middle" font-weight="600">IS</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">About Idarium</p>
+        <h2 class="section-title">A New Architecture<br/>for <em>State Sovereignty</em></h2>
+        <p>IDARIUM SOVEREIGN is an international agency conceived as a strategic infrastructure of digital influence for states wishing to strengthen their sovereignty, legitimacy, and visibility in the digital era.</p>
+        <p>Unlike classical digital transformation approaches driven by multilateral lenders or multinationals, IDARIUM offers an asymmetric, flexible, scalable and sovereign pathway — enabling any state to become an active participant in the global digital economy.</p>
+        <p>We do not sell software. We build alliances of digital sovereignty.</p>
+        <div class="about-stats">
+          <div><div class="stat-number">16</div><div class="stat-label">Sectors Impacted</div></div>
+          <div><div class="stat-number">30–90</div><div class="stat-label">Days to Deploy</div></div>
+          <div><div class="stat-number">0€</div><div class="stat-label">Initial State Cost</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mission" class="mission-section">
+    <div class="mission-bg-text">SOVEREIGN</div>
+    <div class="mission-inner">
+      <div class="mission-header">
+        <div>
+          <p class="section-label" style="color:var(--gold);">Our Mission</p>
+          <h2 class="section-title">Built for States.<br/><em>Designed for Sovereignty.</em></h2>
+        </div>
+        <p class="mission-intro">"Nations that invest in digital sovereignty today will become the poles of attractivity and stability of tomorrow."</p>
+      </div>
+      <div class="mission-pillars">
+        <div class="pillar"><div class="pillar-number">01</div><div class="pillar-title">Sovereign Technology</div><p class="pillar-text">A pre-built, white-label platform — ATOSIN — enabling states to manage a global e-resident registry, issue national digital identities, and integrate KYC/AML compliance tools, all under full state control.</p></div>
+        <div class="pillar"><div class="pillar-number">02</div><div class="pillar-title">Adaptive Legal Framework</div><p class="pillar-text">Our PET + ZNS architecture allows any state to launch its programme without parliamentary reform. An executive protocol of 10–12 pages activates a sovereign digital zone in 30 days.</p></div>
+        <div class="pillar"><div class="pillar-number">03</div><div class="pillar-title">Economic Independence</div><p class="pillar-text">A freemium sovereign model: the base platform is delivered at zero cost, with progressive monetisation through e-resident registrations, digital companies, and administrative services.</p></div>
+        <div class="pillar"><div class="pillar-number">04</div><div class="pillar-title">Diplomatic Strategy</div><p class="pillar-text">Each deployment is structured as a diplomatic alliance, not a commercial transaction. IDARIUM positions the state as a pioneer of digital sovereignty — with full narrative and reputational support.</p></div>
+        <div class="pillar"><div class="pillar-number">05</div><div class="pillar-title">Diaspora Mobilisation</div><p class="pillar-text">The e-residency programme reconnects citizens abroad to their country of origin, enabling them to create companies, invest, and contribute to national digital growth from anywhere in the world.</p></div>
+        <div class="pillar"><div class="pillar-number">06</div><div class="pillar-title">Scalable Network</div><p class="pillar-text">Each state that joins becomes a node in a growing international network. Three states create a standard. Five states create a norm. Our vision: the first global network of sovereign digital nations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="entities" class="entities-section">
+    <div class="entities-inner">
+      <div class="entities-header">
+        <p class="section-label">Our Structure</p>
+        <h2 class="section-title">Two Entities.<br/><em>One Vision.</em></h2>
+      </div>
+      <div class="entities-grid">
+        <div class="entity-card sovereign">
+          <div class="entity-bg-letter">S</div>
+          <div class="entity-tag">B2G · Governmental</div>
+          <h3 class="entity-name">Idarium Sovereign</h3>
+          <p class="entity-domain">idarium-sovereign.com</p>
+          <p class="entity-desc">The strategic arm. Dedicated to partnering with states on digital sovereignty infrastructure, e-residency programmes, and governmental digital transformation.</p>
+          <ul class="entity-features">
+            <li>National e-residency programme design & deployment</li>
+            <li>ATOSIN platform — white-label sovereign technology</li>
+            <li>PET + ZNS legal framework activation</li>
+            <li>Diplomatic acquisition & state onboarding</li>
+            <li>Digital Redemption Protocol for states in transition</li>
+          </ul>
+        </div>
+        <div class="entity-card tech">
+          <div class="entity-bg-letter">T</div>
+          <div class="entity-tag">B2B · Commercial</div>
+          <h3 class="entity-name">Idarium Tech</h3>
+          <p class="entity-domain">idarium-tech.com</p>
+          <p class="entity-desc">The commercial engine. Building AI-powered tools for entrepreneurs, institutions, and businesses — generating the revenue that sustains and scales the Sovereign division.</p>
+          <ul class="entity-features">
+            <li>IDARIUM PLAN — AI business plan generator</li>
+            <li>Automated financial modelling & projections</li>
+            <li>Pitch deck & executive summary automation</li>
+            <li>SaaS subscriptions & institutional licences</li>
+            <li>Consultant marketplace & validation layer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Engage<br/><em>With Us</em></h2>
+        <p>Whether you represent a government, an institution, or a strategic partner, we welcome confidential enquiries at the highest level.</p>
+        <div class="contact-info">
+          <div class="contact-item"><span class="contact-item-label">Headquarters</span><span class="contact-item-value">Brussels, Belgium</span></div>
+          <div class="contact-item"><span class="contact-item-label">Operations</span><span class="contact-item-value">Tallinn, Estonia</span></div>
+          <div class="contact-item"><span class="contact-item-label">General Enquiries</span><span class="contact-item-value">contact@idarium-sovereign.com</span></div>
+          <div class="contact-item"><span class="contact-item-label">Governmental Affairs</span><span class="contact-item-value">sovereign@idarium-sovereign.com</span></div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="form-group"><label>Organisation</label><input type="text" placeholder="Government / Institution / Company"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+        <div class="form-group">
+          <label>Nature of Enquiry</label>
+          <select><option value="" disabled selected>Select a category</option><option>Governmental Partnership</option><option>Idarium Tech / Products</option><option>Investment & Funding</option><option>Press & Media</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Brief description of your enquiry..."></textarea></div>
+        <button type="submit" class="form-submit">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Idarium Sovereign · 2025</div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#entities">Structure</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">All rights reserved · Confidential</div>
+  </footer>
+</body>
+</html>
