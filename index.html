@@ -1,203 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IDARIUM SOVEREIGN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<title>IDARIUM SOVEREIGN</title>
 
-  <style>
-    :root {
-      --navy: #1a2a3a;
-      --navy-deep: #0d1a26;
-      --gold: #b8975a;
-      --cream: #f2efe8;
-      --white: #ffffff;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      font-family: 'Tenor Sans', sans-serif;
-      background: var(--cream);
-    }
+:root{
+--navy:#0d1a26;
+--navy-light:#1a2a3a;
+--gold:#b8975a;
+--cream:#f2efe8;
+--white:#ffffff;
+}
 
-    /* ================= HEADER PREMIUM ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
+body{
+font-family:'Tenor Sans',sans-serif;
+background:var(--cream);
+color:var(--navy-light);
+}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+/* ================= HEADER ================= */
 
-      padding: 1.2rem 3rem;
+nav{
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
 
-      background: rgba(242,239,232,0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(184,151,90,0.2);
-    }
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-    nav::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-    }
+padding:1.2rem 3rem;
 
-    /* LOGO */
+background:rgba(242,239,232,0.85);
+backdrop-filter:blur(14px);
+border-bottom:1px solid rgba(184,151,90,0.2);
+}
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      text-decoration: none;
-    }
+nav::after{
+content:"";
+position:absolute;
+bottom:0;
+width:100%;
+height:1px;
+background:linear-gradient(to right,transparent,var(--gold),transparent);
+}
 
-    .nav-logo img {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      object-fit: contain;
-      display: block;
+.nav-logo{
+display:flex;
+align-items:center;
+gap:0.9rem;
+text-decoration:none;
+}
 
-      transition: transform 0.3s ease;
-    }
+.nav-logo img{
+width:48px;
+height:48px;
+object-fit:contain;
+}
 
-    .nav-logo:hover img {
-      transform: scale(1.05);
-    }
+.nav-brand-main{
+font-family:'Cormorant Garamond',serif;
+letter-spacing:0.18em;
+text-transform:uppercase;
+}
 
-    .nav-brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
+.nav-brand-sub{
+font-size:0.6rem;
+letter-spacing:0.3em;
+color:var(--gold);
+}
 
-    .nav-brand-main {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
+.nav-links{
+display:flex;
+gap:2rem;
+list-style:none;
+}
 
-    .nav-brand-sub {
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 3px;
-    }
+.nav-links a{
+text-decoration:none;
+font-size:0.65rem;
+letter-spacing:0.25em;
+color:var(--navy-light);
+opacity:0.6;
+position:relative;
+}
 
-    /* NAV LINKS */
+.nav-links a:hover{opacity:1;}
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+.nav-links a::after{
+content:"";
+position:absolute;
+bottom:-6px;
+left:0;
+width:0;
+height:1px;
+background:var(--gold);
+transition:0.3s;
+}
 
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.6;
-      position: relative;
-      transition: all 0.25s ease;
-    }
+.nav-links a:hover::after{width:100%;}
 
-    .nav-links a:hover {
-      opacity: 1;
-    }
+/* ================= HERO ================= */
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0%;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+background:radial-gradient(circle at center,var(--navy-light),var(--navy));
+color:white;
 
-    /* HERO (simple pour test) */
+padding-top:100px;
+}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--navy-deep);
-      color: white;
-      text-align: center;
-      padding-top: 80px;
-    }
+.hero img{
+width:110px;
+margin-bottom:2rem;
+filter:brightness(0) invert(1);
+}
 
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
-      letter-spacing: 0.1em;
-    }
+.hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(3rem,6vw,5rem);
+letter-spacing:0.1em;
+text-transform:uppercase;
+}
 
-    /* RESPONSIVE */
+.hero p{
+margin-top:1rem;
+opacity:0.6;
+letter-spacing:0.2em;
+}
 
-    @media (max-width: 900px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
+/* ================= SECTIONS ================= */
 
-      .nav-links {
-        display: none;
-      }
-    }
+section{
+padding:6rem 3rem;
+max-width:1200px;
+margin:auto;
+}
 
-  </style>
+h2{
+font-family:'Cormorant Garamond',serif;
+font-size:2.5rem;
+margin-bottom:2rem;
+}
+
+p{
+line-height:1.8;
+margin-bottom:1.2rem;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:3rem;
+}
+
+/* ================= ANIMATION ================= */
+
+.fade{
+opacity:0;
+transform:translateY(20px);
+transition:1s;
+}
+
+.fade.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:var(--navy);
+color:white;
+text-align:center;
+padding:2rem;
+font-size:0.7rem;
+letter-spacing:0.2em;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.nav-links{display:none;}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="./assets/logo.png" alt="Idarium Logo" width="48" height="48">
-      
-      <div class="nav-brand">
-        <span class="nav-brand-main">Idarium</span>
-        <span class="nav-brand-sub">Sovereign</span>
-      </div>
-    </a>
+<!-- HEADER -->
+<nav>
+<a href="#" class="nav-logo">
+<img src="./assets/logo.png" alt="logo">
+<div>
+<div class="nav-brand-main">Idarium</div>
+<div class="nav-brand-sub">Sovereign</div>
+</div>
+</a>
 
-    <ul class="nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Mission</a></li>
-      <li><a href="#">Structure</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#mission">Mission</a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>IDARIUM</h1>
-  </section>
+<!-- HERO -->
+<section class="hero">
+<img src="./assets/logo.png">
+<h1>IDARIUM</h1>
+<p>DIGITAL SOVEREIGNTY INFRASTRUCTURE</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade">
+<h2>About</h2>
+<div class="grid">
+<p>IDARIUM SOVEREIGN is an international agency dedicated to empowering states through digital sovereignty.</p>
+<p>We build infrastructures that allow nations to control, deploy, and monetise their digital presence globally.</p>
+</div>
+</section>
+
+<!-- MISSION -->
+<section id="mission" class="fade">
+<h2>Mission</h2>
+<p>To create the first global network of sovereign digital nations.</p>
+</section>
+
+<!-- STRUCTURE -->
+<section id="structure" class="fade">
+<h2>Structure</h2>
+<div class="grid">
+<p><strong>Idarium Sovereign</strong> — governmental infrastructure.</p>
+<p><strong>Idarium Tech</strong> — commercial engine.</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade">
+<h2>Contact</h2>
+<p>contact@idarium-sovereign.com</p>
+</section>
+
+<footer>
+IDARIUM SOVEREIGN © 2026
+</footer>
+
+<script>
+const elements=document.querySelectorAll('.fade');
+
+window.addEventListener('scroll',()=>{
+elements.forEach(el=>{
+const rect=el.getBoundingClientRect();
+if(rect.top<window.innerHeight-100){
+el.classList.add('visible');
+}
+});
+});
+</script>
 
 </body>
 </html>
