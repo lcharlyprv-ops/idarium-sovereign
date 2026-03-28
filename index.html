@@ -22,7 +22,7 @@
     body { font-family: 'Tenor Sans', sans-serif; background-color: var(--cream); color: var(--navy); overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; background: rgba(242,239,232,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(26,42,58,0.1); }
     .nav-logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-    .nav-logo svg { width: 44px; height: 44px; }
+    .nav-logo img { width: 44px; height: 44px; object-fit: contain; }
     .nav-brand { display: flex; flex-direction: column; line-height: 1; }
     .nav-brand-main { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; color: var(--navy); text-transform: uppercase; }
     .nav-brand-sub { font-size: 0.6rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 2px; }
@@ -35,7 +35,10 @@
     .hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(184,151,90,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: pulse 6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6} 50%{transform:translate(-50%,-50%) scale(1.15);opacity:1} }
     .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
-    .hero-seal { margin: 0 auto 3rem; width: 130px; height: 130px; animation: fadeDown 1s ease both; }
+    .hero-seal { margin: 0 auto 3rem; width: 140px; height: 140px; animation: fadeDown 1s ease both; position: relative; }
+    .hero-seal-wrapper { position: relative; width: 140px; height: 140px; margin: 0 auto 3rem; animation: fadeDown 1s ease both; }
+    .hero-seal-circle { position: absolute; inset: 0; }
+    .hero-seal-logo { position: absolute; inset: 15px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; }
     @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
     .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 1s 0.2s ease both; }
     .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,6vw,5.5rem); font-weight: 300; line-height: 1.05; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; animation: fadeUp 1s 0.35s ease both; margin-bottom: 0.3rem; }
@@ -59,17 +62,15 @@
     .section-title em { font-style: italic; color: var(--navy-mid); }
     .about { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1300px; margin: 0 auto; }
     .about-visual { position: relative; }
-    .about-frame { width: 100%; aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; }
-    .about-frame-inner { position: absolute; inset: 2rem; border: 1px solid rgba(184,151,90,0.3); display: flex; align-items: center; justify-content: center; }
-    .about-frame-text { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; color: rgba(255,255,255,0.06); letter-spacing: 0.1em; text-align: center; line-height: 1.1; text-transform: uppercase; user-select: none; }
-    .about-frame-seal { position: absolute; bottom: 3rem; right: 3rem; width: 80px; height: 80px; opacity: 0.4; }
+    .about-frame { width: 100%; aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .about-frame-logo { width: 60%; opacity: 0.15; filter: brightness(0) invert(1); }
     .about-tag { position: absolute; top: -1.5rem; left: 2rem; background: var(--gold); color: var(--navy-deep); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5rem 1rem; }
     .about-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; line-height: 1.9; color: var(--navy-mid); margin-bottom: 1.5rem; }
     .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(26,42,58,0.1); }
     .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
     .stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
     .mission-section { background: var(--navy-deep); position: relative; overflow: hidden; }
-    .mission-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; font-weight: 600; color: rgba(255,255,255,0.015); white-space: nowrap; user-select: none; letter-spacing: 0.05em; }
+    .mission-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; font-weight: 600; color: rgba(255,255,255,0.015); white-space: nowrap; user-select: none; }
     .mission-inner { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; }
     .mission-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 5rem; gap: 3rem; }
     .mission-header .section-title { color: var(--white); max-width: 500px; }
@@ -134,17 +135,10 @@
   </style>
 </head>
 <body>
+
   <nav>
     <a href="#" class="nav-logo">
-      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="22" r="20.5" stroke="#1a2a3a" stroke-width="1.5"/>
-        <path d="M13 16h2.5v-3.5c0-0.5 0.3-0.8 0.8-0.8h11.4c0.5 0 0.8 0.3 0.8 0.8V16H31l-2 2H15l-2-2z" fill="#1a2a3a"/>
-        <path d="M15 18h14l1 14c0 0.5-0.3 1-0.8 1.3L22 36l-7.2-2.7c-0.5-0.2-0.8-0.7-0.8-1.3L15 18z" fill="#1a2a3a"/>
-        <text x="22" y="31" font-family="Georgia, serif" font-size="10" font-weight="600" fill="white" text-anchor="middle" letter-spacing="0.5">IS</text>
-        <circle cx="22" cy="13" r="1.5" fill="#b8975a"/>
-        <circle cx="17" cy="14.5" r="1.2" fill="#b8975a"/>
-        <circle cx="27" cy="14.5" r="1.2" fill="#b8975a"/>
-      </svg>
+      <img src="46C94E93-773B-436D-9FEB-184049EB7AEF.png" alt="Idarium Sovereign Logo" />
       <div class="nav-brand">
         <span class="nav-brand-main">Idarium</span>
         <span class="nav-brand-sub">Sovereign</span>
@@ -163,25 +157,20 @@
     <div class="hero-lines"></div>
     <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="hero-seal">
-        <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+      <div class="hero-seal-wrapper">
+        <svg class="hero-seal-circle" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <path id="circle-text" d="M 65,65 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"/>
+            <path id="circle-text" d="M 70,70 m -57,0 a 57,57 0 1,1 114,0 a 57,57 0 1,1 -114,0"/>
           </defs>
-          <circle cx="65" cy="65" r="62" stroke="rgba(184,151,90,0.3)" stroke-width="1" fill="none"/>
-          <circle cx="65" cy="65" r="55" stroke="rgba(184,151,90,0.15)" stroke-width="1" fill="none"/>
-          <text font-family="Tenor Sans, sans-serif" font-size="7.5" fill="rgba(184,151,90,0.7)" letter-spacing="3.2">
+          <circle cx="70" cy="70" r="67" stroke="rgba(184,151,90,0.3)" stroke-width="1" fill="none"/>
+          <circle cx="70" cy="70" r="60" stroke="rgba(184,151,90,0.15)" stroke-width="1" fill="none"/>
+          <text font-family="Tenor Sans, sans-serif" font-size="7.5" fill="rgba(184,151,90,0.7)" letter-spacing="3">
             <textPath href="#circle-text">IDARIUM SOVEREIGN · DIGITAL SOVEREIGNTY INFRASTRUCTURE ·</textPath>
           </text>
-          <path d="M45 52h40l3 22c0 2-1 4-3 5L65 85l-20-6c-2-1-3-3-3-5l3-22z" fill="rgba(184,151,90,0.15)" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
-          <text x="65" y="75" font-family="Georgia, serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="2">IS</text>
-          <circle cx="56" cy="50" r="2" fill="rgba(184,151,90,0.6)"/>
-          <circle cx="65" cy="48" r="2.5" fill="rgba(184,151,90,0.8)"/>
-          <circle cx="74" cy="50" r="2" fill="rgba(184,151,90,0.6)"/>
-          <line x1="56" y1="50" x2="65" y2="48" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
-          <line x1="74" y1="50" x2="65" y2="48" stroke="rgba(184,151,90,0.4)" stroke-width="1"/>
         </svg>
+        <img class="hero-seal-logo" src="46C94E93-773B-436D-9FEB-184049EB7AEF.png" alt="Idarium Sovereign" />
       </div>
+
       <p class="hero-eyebrow">Established · Brussels · Estonia</p>
       <h1 class="hero-title">Idarium<br/><span>Sovereign</span></h1>
       <p class="hero-subtitle">Digital Sovereignty Infrastructure</p>
@@ -200,16 +189,7 @@
       <div class="about-visual">
         <div class="about-tag">Est. 2025</div>
         <div class="about-frame">
-          <div class="about-frame-inner">
-            <div class="about-frame-text">Digital<br/>Sovereignty</div>
-          </div>
-          <div class="about-frame-seal">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" stroke="rgba(184,151,90,0.4)" stroke-width="1" fill="none"/>
-              <path d="M25 35h30l2 16c0 1.5-0.8 3-2 3.5L40 58l-15-3.5c-1.2-0.5-2-2-2-3.5l2-16z" fill="rgba(184,151,90,0.1)" stroke="rgba(184,151,90,0.5)" stroke-width="1"/>
-              <text x="40" y="52" font-family="Georgia" font-size="11" fill="rgba(184,151,90,0.7)" text-anchor="middle" font-weight="600">IS</text>
-            </svg>
-          </div>
+          <img class="about-frame-logo" src="46C94E93-773B-436D-9FEB-184049EB7AEF.png" alt="Idarium Sovereign" />
         </div>
       </div>
       <div class="about-text">
@@ -324,5 +304,6 @@
     </ul>
     <div class="footer-copy">All rights reserved · Confidential</div>
   </footer>
+
 </body>
 </html>
